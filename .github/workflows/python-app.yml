@@ -11,17 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v3  # Update to latest version for new features and fixes
+
     - name: Set up Python 3.9
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4  # Update to latest version for new features and fixes
       with:
         python-version: '3.9'
+    
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install -r requirements.txt  # Include pytest in requirements.txt to manage all dependencies in one place
+
     - name: Set PYTHONPATH
-      run: echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
-    - name: Run Tests
-      run: |
-        pytest
+      run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV  # Ensure PYTHONPATH is correctly pointing to your workspace
+
+    - name: Run tests
+      run: pytest
