@@ -1,5 +1,9 @@
+# Other dependencies
 Flask
 gunicorn
-psycopg2-binary  # If using PostgreSQL
-SQLAlchemy       # If using ORM
+psycopg2-binary
+SQLAlchemy
 flask-cors
+
+# Testing dependencies
+pytest==6.2.5  # Specify the version you have tested with your application
