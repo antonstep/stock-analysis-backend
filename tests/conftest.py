@@ -1,5 +1,8 @@
 import pytest
+
+# In tests/conftest.py
 from app import create_app
+
 
 @pytest.fixture
 def app():
