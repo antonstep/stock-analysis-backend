@@ -2,3 +2,4 @@ Flask
 gunicorn
 psycopg2-binary  # If using PostgreSQL
 SQLAlchemy       # If using ORM
+flask-cors
