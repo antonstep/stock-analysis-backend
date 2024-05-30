@@ -8,24 +8,29 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Workflow runs on Ubuntu virtual machines
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3  # Update to latest version for new features and fixes
+    - name: Setup Node.js environment (v20)  # Installs and configures Node.js version 20
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
 
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v4  # Update to latest version for new features and fixes
+    - name: Checkout code (v3)  # Downloads your code from the GitHub repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.9 (v4)  # Installs and configures Python version 3.9
+      uses: actions/setup-python@v4
       with:
         python-version: '3.9'
-    
-    - name: Install dependencies
+
+    - name: Install dependencies  # Installs required Python packages
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt  # Include pytest in requirements.txt to manage all dependencies in one place
+        pip install -r requirements.txt  # Installs packages listed in requirements.txt
 
-    - name: Set PYTHONPATH
-      run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV  # Ensure PYTHONPATH is correctly pointing to your workspace
+    - name: Set PYTHONPATH  # Sets an environment variable for Python package discovery
+      run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
 
-    - name: Run tests
+    - name: Run tests (using pytest)  # Executes your Python tests using pytest
       run: pytest
