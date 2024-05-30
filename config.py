@@ -1,13 +1,4 @@
+import os
+
 class Config:
-    DEBUG = False
-    TESTING = False
-
-class DevelopmentConfig(Config):
-    DEBUG = True
-
-class TestingConfig(Config):
-    TESTING = True
-    DEBUG = True
-
-class ProductionConfig(Config):
-    pass
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
