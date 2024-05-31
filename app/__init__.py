@@ -21,6 +21,6 @@ def create_app():
 
     # Setup CORS with dynamic origin support
     allowed_origins = os.getenv('ALLOWED_ORIGINS', '*').split(',')
-    CORS(app, resources={r"/api/*": {"origins": "https://antonstep.github.io/stock-analysis-frontend/"}})  # Adjust for production
+    CORS(app, resources={r"/api/*": {"origins": allowed_origins}})
 
     return app
